@@ -1,0 +1,25 @@
+#**
+*    This must be placed in the clion include file with the name
+*    'C++TemplateVariable' and extension 'template' to match its usage
+*    in other templates. Its included in other templates using the directive:
+*
+*    #parse("C++TemplateVariables.template")
+*
+*#
+#set($NAMESPACE = $Namespace )
+#if($NAMESPACE.trim().equals("") == false)
+   #set($NAMESPACES_OPEN = "namespace ${NAMESPACE} {" )
+   #set($NAMESPACES_CLOSE = "} /* namespace ${NAMESPACE} */" )
+   #set($nameUpper = "${NAMESPACE}_${PROJECT_NAME}_${NAME}")
+   #set($nsNAME = "${NAMESPACE}::${NAME}")
+#else
+   #set($NAMESPACES_OPEN = "" )
+   #set($NAMESPACES_CLOSE = "" )
+   #set($nameUpper = "${PROJECT_NAME}_${NAME}")
+   #set($nsNAME = "${NAME}")
+#end
+#set( $regex = "([a-z])([A-Z]+)")
+#set( $replacement = "$1_$2")
+#set( $nameUpper = $nameUpper.replaceAll($regex, $replacement).toUpperCase())
+#set($INCLUDE_GUARD = "${nameUpper}_H_")
+#set($API_EXTERN = "EXTERN_$nameUpper")

@@ -1,0 +1,9 @@
+cmake-build-*
+.idea
+*.log
+*.retry
+.vscode/
+*.swp
+build/
+deb_dist/
+*.tar.gz
