@@ -4,6 +4,9 @@ find_package(Boost 1.65
         filesystem
         system
     REQUIRED)
+find_package(gflags CONFIG REQUIRED)
+find_package(Threads REQUIRED)
+find_package(Folly REQUIRED)
 
 add_library(cppclasses
         ObjectClass.cc
@@ -13,8 +16,12 @@ add_library(cppclasses
     util.cc ../include/cppsandbox/ClassTemplate.h)
 target_include_directories(cppclasses
         PUBLIC ../include )
+
 target_link_libraries(cppclasses
-        PUBLIC Boost::system)
+        PUBLIC Boost::system
+               gflags
+               Folly::folly )
+target_compile_features(cppclasses PRIVATE cxx_std_20)
 
 #
 # Executable

@@ -1,9 +1,21 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.11.4)
 
-project(CppSandboxTest)
+# see https://cmake.org/cmake/help/latest/module/FetchContent.html
+include(FetchContent)
 
 include(CTest)
+include(GoogleTest)
 enable_testing()
+
+
+FetchContent_Declare(
+   googletest         GIT_TAG  v1.10.x
+   GIT_REPOSITORY https://github.com/google/googletest.git )
+FetchContent_GetProperties(googletest)
+
+FetchContent_MakeAvailable(
+  googletest
+  )
 
 add_executable(unitTests
         allTests.cc
@@ -11,7 +23,7 @@ add_executable(unitTests
         ValueClassTest.cc
         ObjectClassTest.cc
         AnotherValueTest.cc
-        stdlibTest.cc boostLib.cc)
+        stdlibTest.cc boostLib.cc follyTests.cc fmtLibTest.cc)
 target_link_libraries(unitTests
         PUBLIC cppclasses
         gtest
@@ -20,6 +32,9 @@ target_include_directories(unitTests
         PUBLIC cppclasses
         gtest
         gmock )
-add_test(NAME valueClass COMMAND ValueClassTest)
-add_test(NAME anotherValueClass COMMAND AnotherValueClassTest)
-add_test(NAME objectClass COMMAND ObjectClassTest)
+target_compile_features(unitTests PRIVATE cxx_std_20)
+
+gtest_discover_tests(unitTests
+  WORKING_DIRECTORY ${PROJECT_DIR}
+  PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${PROJECT_DIR}" )
+set_target_properties(unitTests PROPERTIES FOLDER tests)
