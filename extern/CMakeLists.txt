@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11.4)
 
-project(cppsandbox_dependencies)
+project(cxxstarter_dependencies)
 
 include (ExternalProject)
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/installed )

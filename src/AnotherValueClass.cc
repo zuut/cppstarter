@@ -4,7 +4,7 @@
 
 // indicate that this is the 1 file implementing the APIWITHIMPLCLASS
 #define ANOTHERVALUECLASS_EXTERN
-#include "cppsandbox/AnotherValueClass.h"
+#include "cxxstarter/AnotherValueClass.h"
 #include "util.h"
 
 #include <string>
@@ -55,7 +55,7 @@ namespace zuut
         std::cout << "creating(x,y) " << *this << std::endl;
     }
 
-    // put the destructor in a cpp file to let the compiler know it can put
+    // put the destructor in a source file to let the compiler know it can put
     // generated implementations here.
     AnotherValueClass::~AnotherValueClass() = default;
 

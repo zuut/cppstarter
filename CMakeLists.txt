@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(cppsandbox)
+project(cxxstarter)
 
 set(EXTERN_PROJECTS_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/extern/installed )
 if (NOT EXISTS ${EXTERN_PROJECTS_INSTALL_PREFIX} )

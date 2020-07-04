@@ -25,11 +25,11 @@ add_executable(unitTests
         AnotherValueTest.cc
         stdlibTest.cc boostLib.cc follyTests.cc fmtLibTest.cc)
 target_link_libraries(unitTests
-        PUBLIC cppclasses
+        PUBLIC cxxclasses
         gtest
         gmock )
 target_include_directories(unitTests
-        PUBLIC cppclasses
+        PUBLIC cxxclasses
         gtest
         gmock )
 target_compile_features(unitTests PRIVATE cxx_std_20)
